@@ -11,13 +11,11 @@ import java.util.Scanner;
 public class FundTransferScreen {
     final int maxTransferAmount = 1000;
     final int minTransferAmount = 1;
-    private Scanner scanner;
     private Account account;
     private AccountDao accountDao;
 
-    public FundTransferScreen(Account account, Scanner scanner) {
+    public FundTransferScreen(Account account) {
         this.account = account;
-        this.scanner = scanner;
         this.accountDao = new AccountDaoImpl();
     }
 
@@ -33,19 +31,19 @@ public class FundTransferScreen {
         System.out.println("press enter to continue or");
         System.out.println("press cancel (Esc) to go back to Transaction : ");
 
-        destinationAccountNumber = this.scanner.nextLine();
+        destinationAccountNumber = Utils.getKeyboardValue();
 
         System.out.println("Please enter transfer amount and");
         System.out.println("press enter to continue or");
         System.out.println("press cancel (Esc) to go back to Transaction : ");
 
-        amount = this.scanner.nextLine();
+        amount = Utils.getKeyboardValue();
 
         System.out.println("Please enter reference number (Optional) and");
         System.out.println("press enter to continue or");
         System.out.println("press cancel (Esc) to go back to Transaction : ");
 
-        referenceNo = this.scanner.nextLine();
+        referenceNo = Utils.getKeyboardValue();
 
         // Transfer confirmation
         System.out.println("\n\nTransfer Confirmation");
@@ -57,7 +55,7 @@ public class FundTransferScreen {
         System.out.println("2. Cancel Trx");
         System.out.println("Choose option[2]");
 
-        option = this.scanner.nextLine();
+        option = Utils.getKeyboardValue();
 
         switch (option){
             case "1":
@@ -119,7 +117,7 @@ public class FundTransferScreen {
         }
 
         this.account.setBalance(this.account.getBalance() - transferAmount);
-        fundTransferSummaryScreen = new FundTransferSummaryScreen(this.account, this.scanner);
+        fundTransferSummaryScreen = new FundTransferSummaryScreen(this.account);
         fundTransferSummaryScreen.start(destinationAccountNumber, transferAmount, referenceNo);
     }
 }

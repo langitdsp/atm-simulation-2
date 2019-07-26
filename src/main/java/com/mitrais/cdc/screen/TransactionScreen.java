@@ -4,14 +4,13 @@ import java.util.Scanner;
 
 import com.mitrais.cdc.exception.StopLoopException;
 import com.mitrais.cdc.model.Account;
+import com.mitrais.cdc.utils.Utils;
 
 public class TransactionScreen {
     private Account account;
-    private Scanner scanner;
 
-    public TransactionScreen(Account account, Scanner scanner) {
+    public TransactionScreen(Account account) {
         this.account = account;
-        this.scanner = scanner;
     }
 
     public void start() {
@@ -27,11 +26,11 @@ public class TransactionScreen {
             System.out.println("3. Exit");
             System.out.println("Please choose option[3]: ");
 
-            option = this.scanner.nextLine();
+            option = Utils.getKeyboardValue();;
 
             switch (option) {
                 case "1":
-                    WithdrawScreen withdrawScreen = new WithdrawScreen(this.account, this.scanner);
+                    WithdrawScreen withdrawScreen = new WithdrawScreen(this.account);
                     try{
                         withdrawScreen.start();
                     }catch (StopLoopException e){
@@ -40,7 +39,7 @@ public class TransactionScreen {
                     }
                     break;
                 case "2":
-                    FundTransferScreen fundTransferScreen = new FundTransferScreen(this.account, this.scanner);
+                    FundTransferScreen fundTransferScreen = new FundTransferScreen(this.account);
                     try{
                         fundTransferScreen.start();
                     }catch (StopLoopException e){

@@ -1,5 +1,6 @@
 package com.mitrais.cdc.utils;
 
+import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public final class Utils {
@@ -12,5 +13,15 @@ public final class Utils {
         boolean isValid = Pattern.matches("\\d+", input);
 
         return isValid;
+    }
+
+    public final static String getKeyboardValue(){
+        Scanner scanner = new Scanner(System.in);
+
+        String value = scanner.nextLine();
+
+        scanner.close();
+
+        return value;
     }
 }

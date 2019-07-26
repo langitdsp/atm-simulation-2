@@ -1,6 +1,5 @@
 package com.mitrais.cdc.screen;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.mitrais.cdc.dao.AccountDao;
@@ -12,11 +11,9 @@ import com.mitrais.cdc.utils.Utils;
  * Welcome screen
  */
 public class WelcomeScreen {
-    private Scanner scanner;
     AccountDao accountDao;
 
-    public WelcomeScreen(Scanner scanner) {
-        this.scanner = scanner;
+    public WelcomeScreen() {
         this.accountDao = new AccountDaoImpl();
     }
 
@@ -28,7 +25,7 @@ public class WelcomeScreen {
         System.out.println("\n\nWelcome...");
         // Enter account number
         System.out.println("Enter Account Number");
-        accountNumber = this.scanner.nextLine();
+        accountNumber = Utils.getKeyboardValue();
 
         if (!Utils.isLengthValid(accountNumber)) {
             System.out.println("Account Number should have 6 digits number");
@@ -42,7 +39,7 @@ public class WelcomeScreen {
 
         // Enter account number
         System.out.println("Enter PIN");
-        pin = this.scanner.nextLine();
+        pin = Utils.getKeyboardValue();
 
         if (!Utils.isLengthValid(pin)) {
             System.out.println("PIN should have 6 digits number");
@@ -61,7 +58,7 @@ public class WelcomeScreen {
             return;
         }
 
-        TransactionScreen transactionScreen = new TransactionScreen(account, this.scanner);
+        TransactionScreen transactionScreen = new TransactionScreen(account);
         transactionScreen.start();
 
 

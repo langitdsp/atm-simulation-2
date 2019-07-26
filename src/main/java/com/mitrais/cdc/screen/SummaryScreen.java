@@ -2,6 +2,7 @@ package com.mitrais.cdc.screen;
 
 import com.mitrais.cdc.exception.StopLoopException;
 import com.mitrais.cdc.model.Account;
+import com.mitrais.cdc.utils.Utils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -9,12 +10,10 @@ import java.util.Scanner;
 
 public class SummaryScreen {
     private Account account;
-    private Scanner scanner;
     private LocalDateTime dateNow;
 
-    public SummaryScreen(Account account, Scanner scanner) {
+    public SummaryScreen(Account account) {
         this.account = account;
-        this.scanner = scanner;
         this.dateNow = LocalDateTime.now();
     }
 
@@ -32,7 +31,7 @@ public class SummaryScreen {
         System.out.println("2. Exit");
         System.out.println("Choose option[2]");
 
-        option = this.scanner.nextLine();
+        option = Utils.getKeyboardValue();
 
         switch (option) {
             case "1":

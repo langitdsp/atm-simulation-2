@@ -8,13 +8,11 @@ import com.mitrais.cdc.utils.Utils;
 
 public class WithdrawScreen {
     private Account account;
-    private Scanner scanner;
     private SummaryScreen summaryScreen;
 
-    public WithdrawScreen(Account account, Scanner scanner) {
+    public WithdrawScreen(Account account) {
         this.account = account;
-        this.scanner = scanner;
-        this.summaryScreen = new SummaryScreen(account, scanner);
+        this.summaryScreen = new SummaryScreen(account);
     }
 
     public void start() throws StopLoopException  {
@@ -28,7 +26,7 @@ public class WithdrawScreen {
         System.out.println("5. Back");
         System.out.println("Please choose option[5]: ");
 
-        option = this.scanner.nextLine();
+        option = Utils.getKeyboardValue();
 
         switch (option) {
             case "1":
@@ -72,7 +70,7 @@ public class WithdrawScreen {
         System.out.println("\n\nOther Withdraw");
         System.out.println("Enter amount to withdraw");
 
-        String amount = this.scanner.nextLine();
+        String amount = Utils.getKeyboardValue();
         if(!Utils.isNumericOnlyValid(amount)){
             System.out.println("Invalid amount");
             return;
